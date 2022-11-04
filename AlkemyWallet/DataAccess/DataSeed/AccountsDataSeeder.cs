@@ -1,4 +1,4 @@
-sing AlkemyWallet.Entities;
+using AlkemyWallet.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
 using System;
