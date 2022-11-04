@@ -1,7 +1,7 @@
 sing AlkemyWallet.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Principal;
-using System.;
+using System;
 
 namespace AlkemyWallet.DataAccess.DataSeed
 {
