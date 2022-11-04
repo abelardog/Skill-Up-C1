@@ -13,7 +13,7 @@ namespace AlkemyWallet.Entities
         public virtual UserEntity User { get; set; }
         [Column("user_id")]
         public int UserId { get; set; }
-
+            
     }
 
 }
