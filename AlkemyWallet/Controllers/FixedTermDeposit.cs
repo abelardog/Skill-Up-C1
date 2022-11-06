@@ -28,17 +28,16 @@ namespace AlkemyWallet.Controllers
         [Route("api/[Controller]")]
         [Authorize]
         [HttpGet("{id}")]
-        public  async Task<IActionResult> GetFixedTermDepositById(int id)
+             public  async Task<IActionResult> GetFixedTermDepositById(int id)
         {
             FixedTermDepositEntity fixedDeposit = await _fixedTermDepositServices.getById(id);
             if (fixedDeposit == null) return NotFound(new { Status = "Not Fund", Message = "No FixedDeposit Fund" });
             else
             {
-                if (fixedDeposit.UserId == _context.Users.Find(fixedDeposit.UserId).Id)
-                {
-                    return Ok(_mapper.Map<FixedTermDepositDTO>(fixedDeposit));
-                }
-                return BadRequest(new { Status = "Not Fund",Message="Not Fixed Deposit Fund"});
+                var fixedDepositDto =GetFixedTransactionDetailById(fixedDeposit)
+                if (fixedDepositDto is null) return BadRequest(new { Status = "Not Fund", Message = "Not Fixed Deposit Fund" });
+                else return Ok(fixedDepositDto);
+
             }
         }
     }
