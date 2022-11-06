@@ -34,11 +34,10 @@ namespace AlkemyWallet.Controllers
             if (fixedDeposit == null) return NotFound(new { Status = "Not Fund", Message = "No FixedDeposit Fund" });
             else
             {
-                if (fixedDeposit.UserId == _context.Users.Find(fixedDeposit.UserId).Id)
-                {
-                    return Ok(_mapper.Map<FixedTermDepositDTO>(fixedDeposit));
-                }
-                return BadRequest(new { Status = "Not Fund",Message="Not Fixed Deposit Fund"});
+                var fixedDepositDto = _fixedTermDepositServices.GetFixedTransactionDetailById(fixedDeposit)
+                if (fixedDepositDto is null) return BadRequest(new { Status = "Not Fund", Message = "Not Fixed Deposit Fund" });
+                else return Ok(fixedDepositDto);
+
             }
         }
     }
