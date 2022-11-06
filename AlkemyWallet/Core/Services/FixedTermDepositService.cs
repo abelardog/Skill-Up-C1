@@ -12,39 +12,12 @@ namespace AlkemyWallet.Core.Services
         {
             _unitOfWork = unitOfWork;
         }
-
-        public async Task delete(FixedTermDepositEntity entity)
-        {
-            await _unitOfWork.FixedTermDepositRepository.delete(entity);
+        
+        public GetFixedTransactionDetailById(FixedTermDepositEntity fixedDeposit){
+            if (fixedDeposit.UserId == _context.Users.Find(fixedDeposit.UserId).Id)
+                    return _mapper.Map<FixedTermDepositDTO>(fixedDeposit);
+             else return null;
         }
-
-
-        public async Task<IReadOnlyList<FixedTermDepositEntity>> getAll()
-        {
-            return await _unitOfWork.FixedTermDepositRepository.getAll();
-        }
-
-        public async Task<FixedTermDepositEntity> getById(int id)
-        {
-            return await _unitOfWork.FixedTermDepositRepository.getById(id);
-        }
-
-        public async Task insert(FixedTermDepositEntity entity)
-        {
-            await _unitOfWork.FixedTermDepositRepository.insert(entity);
-        }
-
-        public async Task saveChanges()
-        {
-            await _unitOfWork.FixedTermDepositRepository.saveChanges();
-        }
-
-        public async Task update(FixedTermDepositEntity entity)
-        {
-            await _unitOfWork.FixedTermDepositRepository.update(entity);
-        }
-
-
-
+        
     }
 }
