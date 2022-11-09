@@ -1,5 +1,7 @@
 ﻿using AlkemyWallet.Core.Interfaces;
 using AlkemyWallet.Core.Services;
+using AlkemyWallet.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +12,11 @@ namespace AlkemyWallet.Controllers
     public class TransactionController : Controller
     {
         private readonly ITransactionService _transactionService;
-        public TransactionController(ITransactionService transaction)
+        private readonly IMapper _mapper;
+        public TransactionController(ITransactionService transactionService, IMapper mapper)
         {
-            _transactionService = transaction;
+            _transactionService = transactionService;
+            _mapper = mapper;
         }
 
         [HttpGet("{id")]
@@ -30,7 +34,7 @@ namespace AlkemyWallet.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Status = "Bad Request", Message = $"Bad Request: {ex.Message}" });
+                return BadRequest(new { Status = "Bad Request", Message = $"Error: {ex.Message}" });
             }
             
         }
